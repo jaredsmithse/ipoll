@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141116114255) do
+ActiveRecord::Schema.define(version: 20141116120051) do
 
   create_table "answers", force: true do |t|
     t.string  "description"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20141116114255) do
     t.string  "name"
     t.string  "url"
     t.integer "user_id"
+    t.boolean "presenting", default: false
   end
 
   create_table "users", force: true do |t|
