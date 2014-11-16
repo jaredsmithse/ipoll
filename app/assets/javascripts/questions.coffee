@@ -1,9 +1,20 @@
 $(document).ready -> 
+
+  # teacher admin listeners
   $("#newQuestion").click addQuestion
   $("#newAnswer").click addAnswer
   $("body").on "click", "#newAnswer", addAnswer
   $("#questionForm").on "submit", submitQuestion
   $("body").on "submit", "#answerForm", submitAnswer
+
+  # teacher present event listeners
+
+  # student show event listeners
+  
+
+#############################
+## Teacher Admin Functions ##
+#############################
 
 addQuestion = ->
   $('#questionForm').show()
@@ -30,3 +41,4 @@ submitAnswer = (event) ->
     question = $("##{questionId}")
     question.find('#answers').append(response)
     $('#answerFormListItem').hide()
+

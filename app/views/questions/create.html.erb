@@ -1,6 +1,14 @@
 <div class="panel panel-default question" id="<%= @question.id %>">
   <div class="panel-heading">
-    <h3 class="panel-title"><%= @question.order %>. <%= @question.description %> <div class="btn btn-primary" id="newAnswer">Add Answer</div></h3>
+    <h3 class="panel-title">
+      <a href="/stats/<%= @room.url %>/<%= @question.id %>">
+        <%= @question.order %>: <%= @question.description %>
+      </a>
+      <div class="btn btn-primary" id="newAnswer">
+        <div class="glyphicon glyphicon-plus"></div>
+         Answer
+      </div>
+    </h3>
   </div>
   <ul class="list-group" id="answers">
     <li class="list-group-item" id="answerFormListItem" style="display: none;">
