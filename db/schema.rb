@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141116010547) do
+ActiveRecord::Schema.define(version: 20141116011942) do
+
+  create_table "answers", force: true do |t|
+    t.string  "description"
+    t.integer "order"
+    t.integer "question_id"
+  end
+
+  create_table "polls", force: true do |t|
+  end
+
+  create_table "questions", force: true do |t|
+    t.string  "description"
+    t.integer "order"
+    t.integer "room_id"
+  end
 
   create_table "rooms", force: true do |t|
     t.string  "name"
