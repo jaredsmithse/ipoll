@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "my_devise/registrations" }
   resources :users
   resources :rooms
+  resources :questions
+  resources :answers
 end

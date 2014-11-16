@@ -5,8 +5,9 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    question = Question.new(question_params)
-    question.save
+    @question = Question.new(question_params)
+    @question.save
+    render layout: false
   end
 
   def show
@@ -18,8 +19,8 @@ class QuestionsController < ApplicationController
 
   private
 
-  def room_params
-    params.require(:question).permit(:id,:room_id,:description)
+  def question_params
+    params.require(:question).permit(:id, :room_id, :description, :order)
   end
 
 end

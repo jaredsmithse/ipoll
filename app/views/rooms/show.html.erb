@@ -3,6 +3,14 @@
 
 <% if user_signed_in? %>
 	<% if current_user.id == @room.user_id %>
-		<%= render 'rooms/add_room' %>
+		<%= render 'rooms/add_room', room: @room %>
 	<% end %>
+
+  <ul id="questions">
+    <% if @questions %>
+      <% @questions.each do |question| %>
+        <li><%= question.order %>: <%= question.description %></li>
+      <% end %>
+    <% end %>
+  </ul>
 <% end %>
