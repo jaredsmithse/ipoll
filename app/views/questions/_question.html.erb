@@ -1,0 +1,19 @@
+<div class="panel panel-default question" id="<%= question.id %>">
+  <div class="panel-heading">
+    <h3 class="panel-title"><a href="/stats/<%= @room.url %>/<%= question.id %>"><%= question.order %>: <%= question.description %></a><div class="btn btn-primary" id="newAnswer">Add Answer</div></h3>
+  </div>
+  <ul class="list-group" id="answers">
+    <li class="list-group-item" id="answerFormListItem" style="display: none;">
+      <form class="form-group" id="answerForm" action="/answers">
+        <input name="answer[question_id]" type="hidden" value="<%= question.id %>" />
+        <input name="answer[description]" placeholder="Description"/>
+        <input name="answer[order]" type="integer" value="0" />
+        <input type="submit" class="btn" id="submitQuestion"></input>
+      </form>  
+    </li>
+
+    <% question.answers.each do |answer| %>
+      <%= render 'answers/answer', answer: answer %>
+    <% end %>
+  </ul>
+</div>

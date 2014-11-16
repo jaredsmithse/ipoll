@@ -1,4 +1,21 @@
-<h3>Question</h3>
-<p>id: <%= @question.id if @question.id %></p>
-<p>description: <%= @question.description if @question.description %></p>
-<%= render 'questions/messages' %>
+<div class="panel panel-default question" id="<%= @question.id %>">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= @question.order %>. <%= @question.description %> <div class="btn btn-primary" id="newAnswer">Add Answer</div></h3>
+  </div>
+  <ul class="list-group" id="answers">
+    <li class="list-group-item" id="answerFormListItem" style="display: none;">
+      <form class="form-group" id="answerForm" action="/answers">
+        <input name="answer[question_id]" type="hidden" value="<%= @question.id %>" />
+        <div class="form-row">
+          <input name="answer[description]" placeholder="Description"/>
+        </div>
+        <div class="form-row">
+          <input name="answer[order]" type="integer" value="0" />
+        </div>
+        <div class="form-row">
+          <input type="submit" class="btn" id="submitQuestion"></input>
+        </div>
+      </form>  
+    </li>
+  </ul>
+</div>  

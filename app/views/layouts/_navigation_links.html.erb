@@ -14,9 +14,7 @@
   <% end %>
 <% end %>
 <% if user_signed_in? %>
-  <% if current_user.id == @room.user_id %>
-    <%# if current_page?(room_path) %>
-      <li><%= link_to 'Edit Room', '#' %></li>
-    <%# end %>
+  <% if @room && current_user.id == @room.user_id %>
+    <li><%= link_to 'Edit Room', '#' %></li>
   <% end %>
 <% end %>
