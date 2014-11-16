@@ -9,7 +9,7 @@ user = CreateAdminService.new.call
 puts 'CREATED ADMIN USER: ' << user.email
 
 usernames = %w(Xavier Jared Mike Andrew Stephen Nathan)
-emails = usernames.map(&:downcase).each {|name| "#{name}@gmail.com"}
+emails = usernames.map(&:downcase).map {|name| name + "@gmail.com"}
 
 usernames.each_with_index do |username, index|
   user = User.new
@@ -17,7 +17,7 @@ usernames.each_with_index do |username, index|
   user.email = emails[index]
   user.password = "password123"
   user.password_confirmation = "password123"
-  user.save
+  user.save!
 end
 
 user2 = User.new
@@ -25,10 +25,11 @@ user2.name = "Smart Teacher"
 user2.email = "teacher@gmail.com"
 user2.password = "password123"
 user2.password_confirmation = "password123"
-user2.save
+user2.role = 1
+user2.save!
 
-room1 = Room.new(name: "chem141")
-room2 = Room.new(name: "cs101")
+room1 = Room.create(name: "chem141")
+room2 = Room.create(name: "cs101")
 
 user2.rooms << room1
 user2.rooms << room2
@@ -90,15 +91,17 @@ end
 
 (0..4).each do |i|
   room2.questions << questions[i]
+  room2.save!
 end
 
 
 (5..9).each do |i|
   room1.questions << questions[i]
+  room1.save!
 end
 
-room1.save
-room2.save
+room1.save!
+room2.save!
 
 questions.map(&:save)
 answers.each {|choices| choices.map(&:save)}

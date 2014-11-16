@@ -14,6 +14,7 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find_by_url(params[:id])
+    @room = Room.find(params[:id]) if @room.nil?
     if @room.questions
       @questions = @room.questions.sort_by(&:order)
     end
