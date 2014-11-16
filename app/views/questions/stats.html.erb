@@ -11,18 +11,14 @@
     function drawChart() {
 
       // Create the data table.
-      var data = new google.visualization.DataTable();
-      data.addColumn('string', 'Answer');
-      data.addColumn('number', 'Votes');
-      data.addRows([
-        ['A', 5],
-        ['B', 2],
-        ['C', 4],
-        ['D', 7]
-      ]);
+      var data = new google.visualization.arrayToDataTable([
+      <$ @question.answers.each do |answer| $>
+        data.addRow(['<$ answer.order $>', <$ answer.polls.count $>, '#b87333'])
+      <$ end $>]);
 
       // Set chart options
-      var options = {
+      var options = {legend:{position: 'none'},
+      bar: {groupWidth: "95%"},
       'width':600,
       'height':500};
 
@@ -31,7 +27,11 @@
       chart.draw(data, options);
     }
 </script>
+<div class="container-fluid">
+  <div class="row text-center" style="padding-left: 50px; padding-bottom: 0; padding-right: 50px; padding-top: 0;">
+    <div class="col-md-3"></div>
 
+    <div class="col-md-6">
 <% if user_signed_in? %>
 
   <%# if current_user.id == @room.user_id %>
@@ -40,12 +40,11 @@
 
   <h3>Question <%= @question.order %></h3>
 
-  <div id="chart_div"></div>
+  <div id="chart_div" style="width:100%;"></div>
 
-  <ul class="answerList">
-    <li>Answer A</li>
-    <li>Answer B</li>
-    <li>Answer C</li>
-    <li>Answer D</li>
-  </ul>
 <% end %>
+</div>
+    <div class="col-md-"></div>
+    </div>
+  </div>
+</div>

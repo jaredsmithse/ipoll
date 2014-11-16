@@ -3,12 +3,12 @@
   <div class="container">
     <div class="col-md-4">
       <% unless current_page?('/')%>
-        <h3><%= link_to 'iPoll', root_path, class: 'navbar-brand' %></h3>
+        <h3 class="right"><%= link_to 'iPoll', root_path, class: 'navbar-brand' %></h3>
       <% end %>
     </div>
     <div class="col-md-4">
       <% if @room%><% if @room.id%>
-        <h3 class="navbar-brand">Room: <%= @room.name %></h3>
+        <h2>Room: <%= @room.name %></h2>
       <% end %><% end %>
     </div>
     <div class="col-md-4">
