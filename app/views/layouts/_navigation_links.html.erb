@@ -13,7 +13,7 @@
   <% end %>
 <% end %>
 <% if user_signed_in? %>
-  <% if current_user.id == @room.user_id %>
+  <% if @room && current_user.id == @room.user_id %>
     <li><%= link_to 'Edit Room', '#' %></li>
   <% end %>
 <% end %>
