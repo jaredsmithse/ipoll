@@ -1,3 +1,4 @@
+<%= @user = current_user %> 
 <%# add navigation links to this file %>
 <% if user_signed_in? %>
   <li><%= link_to 'Edit account', edit_user_registration_path %></li>
@@ -14,6 +15,8 @@
 <% end %>
 <% if user_signed_in? %>
   <% if current_user.id == @room.user_id %>
-    <li><%= link_to 'Edit Room', '#' %></li>
+    <%# if current_page?(room_path) %>
+      <li><%= link_to 'Edit Room', '#' %></li>
+    <%# end %>
   <% end %>
 <% end %>

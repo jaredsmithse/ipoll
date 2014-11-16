@@ -9,7 +9,7 @@
   <ul id="questions">
     <% if @questions %>
       <% @questions.each do |question| %>
-        <li><%= question.order %>: <%= question.description %></li>
+        <a href="/stats/<%= @room.url %>/<%= question.id %>"><li class="questionList"><%= question.order %>: <%= question.description %></li></a>
       <% end %>
     <% end %>
   </ul>

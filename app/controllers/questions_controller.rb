@@ -11,7 +11,8 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @question = Question.find(params[:id])
+    @room = Room.find_by_url(params[:room])
+    @question = @room.questions.find(params[:question])
     unless @question
       redirect_to root_path, :notice => "Question does not exist, you should not see this."
     end

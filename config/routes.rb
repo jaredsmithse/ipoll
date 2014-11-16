@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   resources :rooms
   resources :questions
   resources :answers
+  get 'stats/:room/:question', :to => 'questions#show'
 end

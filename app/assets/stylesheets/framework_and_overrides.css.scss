@@ -80,3 +80,10 @@ section {
   @extend .btn-primary;
   @extend .btn-xs;
 }
+.questionList {
+  font-size: 20px;
+  list-style-type: none;
+}
+.answerList {
+  display: inline;
+}
