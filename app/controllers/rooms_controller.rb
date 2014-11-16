@@ -6,7 +6,7 @@ class RoomsController < ApplicationController
 
   def create
     room = Room.new(room_params)
-    room.user = current_user
+    room.user_id = current_user.id
     room.user.role = :owner
     room.save
     redirect_to "/rooms/#{room.url}", :notice => "Room created."
