@@ -8,19 +8,15 @@
     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
       <li role="presentation"><%= link_to 'Edit account', edit_user_registration_path %></li>
       <li role="presentation"><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></li>
+      <% if current_user.admin? %>
+      <li><%= link_to 'Admin', '/admin' %></li>
+      <li><%= link_to 'Users', users_path %></li>
+      <% end %>
+      <% if @room && current_user.id == @room.user_id %>
+        <li><%= link_to 'Edit Room', '#' %></li>
+      <% end %>
     </ul>
   </div>
 <% else %>
   <!--Dont really need anything if you don't have an account yet --> 
-<% end %>
-<% if user_signed_in? %>
-  <% if current_user.admin? %>
-    <li><%= link_to 'Admin', '/admin' %></li>
-    <li><%= link_to 'Users', users_path %></li>
-  <% end %>
-<% end %>
-<% if user_signed_in? %>
-  <% if @room && current_user.id == @room.user_id %>
-    <li><%= link_to 'Edit Room', '#' %></li>
-  <% end %>
 <% end %>
