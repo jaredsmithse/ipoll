@@ -15,5 +15,8 @@
     <%# end %>
   <!-- </div> -->
 <%# end %>
-
-<h1>We are here, pollee!</h1>
+<% if current_user.owner? %>
+  <h1>We are here, owner!</h1>
+<% else %>
+  <h1>We are here, pollee!</h1>
+<% end %>
