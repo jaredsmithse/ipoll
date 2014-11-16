@@ -6,11 +6,11 @@
 		<%= render 'rooms/add_room', room: @room %>
 	<% end %>
 
-  <ul id="questions">
+  <div id="questions" class="col-md-6">
     <% if @questions %>
       <% @questions.each do |question| %>
-        <li><%= question.order %>: <%= question.description %></li>
+        <%= render 'questions/question', question: question %>
       <% end %>
     <% end %>
-  </ul>
+  </div>
 <% end %>
