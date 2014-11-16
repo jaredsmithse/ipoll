@@ -5,8 +5,8 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question = Question.new(question_params)
-    @question.save
+    @question = Question.create(question_params)
+    @room = @question.room
     render layout: false
   end
 
