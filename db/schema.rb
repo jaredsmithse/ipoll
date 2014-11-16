@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141116103852) do
+ActiveRecord::Schema.define(version: 20141116114255) do
 
   create_table "answers", force: true do |t|
     t.string  "description"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 20141116103852) do
     t.string  "description"
     t.integer "order"
     t.integer "room_id"
+    t.boolean "current",     default: false
+    t.boolean "accepting",   default: false
   end
 
   create_table "rooms", force: true do |t|
