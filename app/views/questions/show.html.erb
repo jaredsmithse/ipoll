@@ -1,5 +1,23 @@
-<!-- <h3>Room <%= @room.name %></h3> -->
+<h3>Room <%= @room.name %></h3>
+<h1>Question <%= @question.order %>: <%= @question.description %></h1>
 
+<div class="list-group">
+  <% @question.answers.each do |answer| %>
+    <% if @answered %>
+      <% if current_user.answers.include? answer %>
+        <a href="#" class="list-group-item active">
+      <% else %>
+        <a href="#" class="list-group-item">
+      <% end %>
+          <%= answer.order %>: <%= answer.description %>
+        </a>
+    <% else %>
+      <a href="/answers/<%= answer.id %>/choose" class="list-group-item">
+        <%= answer.order %>: <%= answer.description %>
+      </a>
+    <% end %>
+  <% end %>
+</div>
 
 <%# if user_signed_in? %>
   <%# if current_user.id == @room.user_id %>

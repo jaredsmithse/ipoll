@@ -17,6 +17,7 @@ class QuestionsController < ApplicationController
       unless @question == @room.current_question
         redirect_to "/rooms/#{@room.url}"
       end
+      @answered = current_user.answered?(@room.current_question)
     end
   end
 
