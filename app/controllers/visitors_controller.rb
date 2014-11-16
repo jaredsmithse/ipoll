@@ -1,6 +1,6 @@
 class VisitorsController < ApplicationController
 	def index
 		@room = Room.new
-		@room.name = 'hello'
+		@room.name = ''
 	end
 end

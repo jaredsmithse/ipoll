@@ -1,5 +1,6 @@
-<h3>Room <%= @room.name %></h3>
-<h1>Question <%= @question.order %>: <%= @question.description %></h1>
+<div class="col-md-4"></div>
+<div class="col-md-4"><
+<h3>Question <%= @question.order %>: <%= @question.description %></h1>
 
 <div class="list-group">
   <% @question.answers.each do |answer| %>
@@ -38,3 +39,5 @@
 <% else %>
   <h1>We are here, pollee!</h1>
 <% end %>
+</div>
+<div class="col-md-4"></div>

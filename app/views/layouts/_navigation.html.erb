@@ -7,9 +7,9 @@
       <% end %>
     </div>
     <div class="col-md-4">
-      <% if @room.id%>
+      <% if @room%><% if @room.id%>
         <h3 class="navbar-brand">Room: <%= @room.name %></h3>
-      <% end %>
+      <% end %><% end %>
     </div>
     <div class="col-md-4">
       <ul class="nav navbar-nav">

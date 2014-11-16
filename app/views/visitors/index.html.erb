@@ -1,8 +1,14 @@
 <% if user_signed_in? && current_user.owner? %>
-    <h3>Room Name:</h3>
-    <%= simple_form_for @room do |f| %>
-  	<%= f.input :name %>
-  	<%= f.button :submit %>
+    <section class="home">
+      <div class="jumbotron text-center">
+          <div class="container">
+            <h3>Room Name:</h3>
+            <%= simple_form_for @room do |f| %>
+          	<%= f.input :name, label: false %>
+          	<%= f.button :submit %>
+          </div>
+      </div>
+    </section>
 	<% end %>
 <% else %>
   <section class="home">
