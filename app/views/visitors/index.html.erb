@@ -1,5 +1,5 @@
 
-<% if user_signed_in? && current_user.owner? %>
+<% if user_signed_in? %>
     <h3>Room Name:</h3>
     <%= simple_form_for @room do |f| %>
   	<%= f.input :name %>
@@ -13,6 +13,7 @@
               <p class="lead">A better way to get students involved.</p>
               <a href="/users/sign_up?role=owner" class="btn btn-primary btn-lg" role="button">I'm A Teacher</a>
               <a href="/users/sign_up?role=pollee" class="btn btn-primary btn-lg" role="button">I'm A Student</a>
+              <p><%= link_to 'I already have an account.', new_user_session_path %></p>
           </div>
       </div>
       <div class="container-fluid">
