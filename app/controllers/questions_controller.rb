@@ -18,7 +18,7 @@ class QuestionsController < ApplicationController
     end
     if current_user.pollee?
       unless @question == @room.current_question
-        redirect_to root_path, notice: "Question not ready for viewing."
+        redirect_to "/rooms/#{@room.url}"
       end
     end
   end

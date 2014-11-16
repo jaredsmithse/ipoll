@@ -3,7 +3,9 @@
 
 <% if user_signed_in? %>
 	<% if current_user.id == @room.user_id %>
-    <div class="btn btn-primary pull-right">Present</div>
+    <form action="/rooms/<%= @room.id %>/activate" >
+      <input type="submit" value="Present" class="btn btn-primary pull-right"/>
+    </form>
 		<%= render 'rooms/add_room', room: @room %>
 	<% end %>
 

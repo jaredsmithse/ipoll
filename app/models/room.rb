@@ -9,6 +9,10 @@ class Room < ActiveRecord::Base
     questions.detect(&:current)
   end
 
+  def activate!
+    self.update_attribute(:presenting, true)
+  end
+
   def validate_url
   	self.url = URI.encode(name.gsub( /\s+/, '-' ))
   end

@@ -1,7 +1,7 @@
 <div class="panel panel-default question" id="<%= question.id %>">
   <div class="panel-heading">
     <h3 class="panel-title">
-      <a href="/stats/<%= @room.url %>/<%= question.id %>">
+      <a href="/rooms/<%= @room.url %>/questions/<%= question.id %>/stats">
         <%= question.order %>: <%= question.description %>
       </a>
       <div class="btn btn-primary" id="newAnswer">
