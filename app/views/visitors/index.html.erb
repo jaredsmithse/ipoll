@@ -1,9 +1,56 @@
-<h3>Welcome</h3>
-<p><%= link_to 'Users:', users_path %> <%= User.count %> registered</p>
+
 <% if user_signed_in? %>
     <h3>Room Name:</h3>
     <%= simple_form_for @room do |f| %>
   	<%= f.input :name %>
   	<%= f.button :submit %>
 	<% end %>
+<% else %>
+  <section class="home">
+      <div class="jumbotron text-center">
+          <div class="container">
+              <h1>iPoll</h1>
+              <p class="lead">A better way to get students involved.</p>
+              <a href="/users/sign_up?role=owner" class="btn btn-primary btn-lg" role="button">I'm A Teacher</a>
+              <a href="/users/sign_up?role=pollee" class="btn btn-primary btn-lg" role="button">I'm A Student</a>
+          </div>
+      </div>
+      <div class="container-fluid">
+          <div class="row text-center" style="padding: 50px;">
+              <h2>What Sets Us Apart</h2>
+              <div class="col-md-4">
+                  <span class="fa-stack fa-4x">
+                      <i class="fa fa-circle fa-stack-2x"></i>
+                      <i class="fa fa-group fa-stack-1x fa-inverse"></i>
+                  </span>
+                  <h3>Easy Registration</h3>
+                  <p>Instead of students having to sign up through the teacher, they can self-enroll.</p>
+              </div>
+              <div class="col-md-4">
+                  <span class="fa-stack fa-4x">
+                      <i class="fa fa-circle fa-stack-2x"></i>
+                      <i class="fa fa-list-ul fa-stack-1x fa-inverse"></i>
+                  </span>
+                  <h3>Low Cost</h3>
+                  <p>Pricing is simple: $10/month for teachers and $1 for the mobile app.</p>
+              </div>
+              <div class="col-md-4">
+                  <span class="fa-stack fa-4x">
+                      <i class="fa fa-circle fa-stack-2x"></i>
+                      <i class="fa fa-comments-o fa-stack-1x fa-inverse"></i>
+                  </span>
+                  <h3>Easy Data Collection</h3>
+                  <p>Prepare for lectures and go through questions like a powerpoint.</p>
+              </div>
+          </div>
+          
+          <section class="footer">
+              <div class="row text-center">
+                  <div class="col-md-12">
+                      <p>&copy; Copyright 2014, iPoll. All rights reserved.</p>
+                  </div>
+              </div>
+          </section>
+      </div>
+  </section>
 <% end %>
