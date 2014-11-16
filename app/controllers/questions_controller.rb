@@ -16,6 +16,11 @@ class QuestionsController < ApplicationController
     unless @question
       redirect_to root_path, :notice => "Question does not exist, you should not see this."
     end
+    if current_user.pollee?
+      unless @question == @room.current_question
+        redirect_to root_path, notice: "Question not ready for viewing."
+      end
+    end
   end
 
   private

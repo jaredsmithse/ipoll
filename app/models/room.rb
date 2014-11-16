@@ -5,6 +5,10 @@ class Room < ActiveRecord::Base
 
   before_save :validate_url
 
+  def current_question
+    questions.detect(&:current)
+  end
+
   def validate_url
   	self.url = URI.encode(name.gsub( /\s+/, '-' ))
   end

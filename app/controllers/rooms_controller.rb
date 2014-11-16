@@ -16,11 +16,14 @@ class RoomsController < ApplicationController
     @room = Room.find_by_url(params[:id])
     @questions = @room.questions.sort_by(&:order)
     unless @room
-      if current_user.pollee?
+      redirect_to root_path, :notice => "Room does not exist, please create one."
+    end
+    if current_user.pollee?
+      if @room && @room.current_question
         question = @room.current_question
-        redirect_to "/questions/#{question}"
+        redirect_to "/questions/#{question.id}", question: question
       else
-        redirect_to root_path, :notice => "Room does not exist, please create one."
+        redirect_to root_path, notice: "Questions are not open."
       end
     end
   end
