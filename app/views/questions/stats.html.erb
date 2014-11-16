@@ -13,7 +13,7 @@
       // Create the data table.
       var data = new google.visualization.arrayToDataTable([
       <% @question.answers.each do |answer| %>
-        data.addRow(['<$ answer.order $>', <% answer.polls.count %>, '#b87333'])
+        ['<$ answer.order $>', <% answer.polls.count %>, '#EB6864'],
       <% end %>]);
 
       // Set chart options
