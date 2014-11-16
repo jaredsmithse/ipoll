@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+  class User < ActiveRecord::Base
   enum role: [:pollee, :owner, :admin]
   after_initialize :set_default_role, :if => :new_record?
   
