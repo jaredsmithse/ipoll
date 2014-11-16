@@ -1,2 +1,8 @@
 <h3>Room</h3>
 <p>Name: <%= @room.name if @room.name %></p>
+
+<% if user_signed_in? %>
+	<% if current_user.id == @room.user_id %>
+		<%= render 'rooms/add_room' %>
+	<% end %>
+<% end %>
