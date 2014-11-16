@@ -12,9 +12,9 @@
 
       // Create the data table.
       var data = new google.visualization.arrayToDataTable([
-      <$ @question.answers.each do |answer| $>
-        data.addRow(['<$ answer.order $>', <$ answer.polls.count $>, '#b87333'])
-      <$ end $>]);
+      <% @question.answers.each do |answer| %>
+        data.addRow(['<$ answer.order $>', <% answer.polls.count %>, '#b87333'])
+      <% end %>]);
 
       // Set chart options
       var options = {legend:{position: 'none'},
