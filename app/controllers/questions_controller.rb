@@ -11,7 +11,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @question = Question.find(params[:id])
+    @question = Question.find(params[:question_id])
     @room = @question.room
     if current_user.pollee?
       unless @question == @room.current_question
@@ -20,6 +20,19 @@ class QuestionsController < ApplicationController
       @answered = current_user.answered?(@room.current_question)
     end
   end
+
+  def start
+    @question = Question.find(params[:id])
+    @question.update_attribute(:accepting, true)
+    render nothing: true
+  end
+
+  def stop
+    @question = Question.find(params[:id])
+    @question.update_attribute(:accepting, false)
+    render nothing: true
+  end
+
 
   private
 

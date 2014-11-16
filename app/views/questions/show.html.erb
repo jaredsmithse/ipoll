@@ -1,43 +1,48 @@
-<div class="col-md-4"></div>
-<div class="col-md-4"><
-<h3>Question <%= @question.order %>: <%= @question.description %></h1>
+<% if current_user.owner? %>
+  <div class="btn-group pull-right" role="group" id="ownerOptions" >
+    <button id="start" type="button" class="btn btn-default">
+      <i class="glyphicon glyphicon-play" ></i>
+    </button>
+    <button id="stop" type="button" class="btn btn-default">
+      <i class="glyphicon glyphicon-stop" ></i>
+    </button>
+    <button id="stats" type="button" class="btn btn-default">
+    <a href="/rooms/<%= @room.url %>/questions/<%= @question.id %>/stats" >
+      <i class="glyphicon glyphicon-stats" ></i>
+    </a></button>
+  </div>
+<% end %>
 
-<div class="list-group">
-  <% @question.answers.each do |answer| %>
-    <% if @answered %>
-      <% if current_user.answers.include? answer %>
-        <a href="#" class="list-group-item active">
+<div data-question-id="<%= @question.id %>" class="row-fluid" id="questionShow" >
+  <h3>Room <%= @room.name %></h3>
+  <h1>Question <%= @question.order %>: <%= @question.description %></h1>
+
+  <div class="list-group">
+    <% @question.answers.each do |answer| %>
+      <% if @answered %>
+        <% if current_user.answers.include? answer %>
+          <a href="#" class="list-group-item active">
+        <% else %>
+          <a href="#" class="list-group-item">
+        <% end %>
+            <%= answer.order %>: <%= answer.description %>
+          </a>
       <% else %>
-        <a href="#" class="list-group-item">
-      <% end %>
+        <% if current_user.owner? %>
+          <a href="#" class="list-group-item">
+        <% else %>
+          <a href="/answers/<%= answer.id %>/choose" class="list-group-item">
+        <% end %>
           <%= answer.order %>: <%= answer.description %>
         </a>
-    <% else %>
-      <a href="/answers/<%= answer.id %>/choose" class="list-group-item">
-        <%= answer.order %>: <%= answer.description %>
-      </a>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
+
 </div>
 
-<%# if user_signed_in? %>
-  <%# if current_user.id == @room.user_id %>
-    <!-- <div class="btn btn-primary pull-right">Present</div> -->
-    <%#= render 'rooms/add_room', room: @room %>
-  <%# end %>
-
-  <!-- <div id="questions" class="col-md-6"> -->
-    <%# if @questions %>
-      <%# @questions.each do |question| %>
-        <%#= render 'questions/question', question: question %>
-      <%# end %>
-    <%# end %>
-  <!-- </div> -->
-<%# end %>
 <% if current_user.owner? %>
-  <h1>We are here, owner!</h1>
-<% else %>
-  <h1>We are here, pollee!</h1>
+  <div class="btn btn-primary pull-right">
+     Next  <i class="glyphicon glyphicon-arrow-right" ></i>
+  </div>
 <% end %>
-</div>
-<div class="col-md-4"></div>

@@ -9,7 +9,9 @@ $(document).ready ->
 
   # teacher present event listeners
 
-  # student show event listeners
+  # question show event listeners
+  $("#start").click startCollecting
+  $("#stop").click stopCollecting
   
 
 #############################
@@ -41,4 +43,19 @@ submitAnswer = (event) ->
     question = $("##{questionId}")
     question.find('#answers').append(response)
     $('#answerFormListItem').hide()
+
+startCollecting = (event) ->
+  event.preventDefault()
+  url = "/questions/#{$('#questionShow').data('questionId')}/start"
+  $("#stop .glyphicon").css("color", "white")
+  $("#start .glyphicon").css("color", "green")
+  $.get url
+
+stopCollecting = (event) ->
+  event.preventDefault()
+  url = "/questions/#{$('#questionShow').data('questionId')}/stop"
+  $("#start .glyphicon").css("color", "white")
+  $("#stop .glyphicon").css("color", "red")
+  $.get url
+
 
