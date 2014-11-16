@@ -10,16 +10,16 @@
     // draws it.
     function drawChart() {
 
+      // debugger
       // Create the data table.
-      var data = new google.visualization.arrayToDataTable([
-     <% @question.answers.each do |answer| %>
-       <% if @question.answers.last == answer %>
-         [1,'<%= answer.order %>', '<%= answer.polls.count %>', '#eb6864']
-       <% else %>
-         [1,'<%= answer.order %>', '<%= answer.polls.count %>', '#eb6864'],
-       <% end %>
 
-     <% end %>]); 
+      var data = new google.visualization.DataTable();
+      data.addColumn("number", "Order");
+      data.addColumn("number", "Number of Votes");
+      data.addColumn({type: 'string', role: 'style'});
+      <% @question.answers.each do |answer| %>
+        data.addRow([<%= answer.order %>, <%= answer.polls.count %>, "color: #EB6864"]);
+      <% end %>
 
       // Set chart options
       var options = {legend:{position: 'none'},

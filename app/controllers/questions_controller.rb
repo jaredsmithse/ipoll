@@ -49,6 +49,15 @@ class QuestionsController < ApplicationController
     redirect_to "/questions/#{next_q.id}"
   end
 
+  def tally
+    question = Question.find(params[:id])
+    tally = question.polls.count
+    until question.polls.count > tally
+      next 
+    end
+    render json: question.polls.count
+  end
+
 
   private
 

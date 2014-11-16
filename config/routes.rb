@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'rooms/:room_url/questions/:id/stats', :to => 'questions#stats'
   get 'questions/:id/start', to: 'questions#start'
   get 'questions/:id/stop', to: 'questions#stop'
+  get 'questions/:id/tally', to: 'questions#tally'
   devise_for :users, controllers: { registrations: "my_devise/registrations" }
   resources :users
   resources :rooms
