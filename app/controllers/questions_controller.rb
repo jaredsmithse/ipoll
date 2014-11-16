@@ -11,7 +11,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @question = Question.find(params[:question_id])
+    @question = Question.find(params[:id])
     @room = @question.room
     if current_user.pollee?
       unless @question == @room.current_question
@@ -31,6 +31,22 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     @question.update_attribute(:accepting, false)
     render nothing: true
+  end
+
+  def stats
+    @question = Question.find(params[:id])
+    @question.update_attribute(:accepting, false)
+  end
+
+  def next
+    question = Question.find(params[:id])
+    question.update_attribute(:accepting, false)
+    questions = question.room.questions.sort_by(&:order)
+    index = questions.index(question)
+    next_q = questions[index + 1]
+    quesion.set_inactive!
+    next_q.set_current!
+    redirect_to "/questions/#{next_q.id}"
   end
 
 

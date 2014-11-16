@@ -6,4 +6,8 @@ class Question < ActiveRecord::Base
   def set_current!
     self.update_attribute(:current, true)
   end
+
+  def set_inactive!
+    self.update_attribute(:current, false)
+  end
 end
