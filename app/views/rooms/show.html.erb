@@ -1,19 +1,25 @@
-<h3>Room <%= @room.name %></h3>
+<div class="container-fluid">
+  <div class="row text-center" style="padding-left: 50px; padding-bottom: 0; padding-right: 50px; padding-top: 0;">
+    <div id="questions" class="col-md-4"></div>
 
+    <div id="questions" class="col-md-4">
+      <% if user_signed_in? %>  
+        <% if current_user.id == @room.user_id %>
+          <%= render 'rooms/add_room', room: @room %>
+        <% end %>
+  	    <% if @questions %>
+          <% @questions.each do |question| %>
+          <%= render 'questions/question', question: question %>
+  		  <% end %>
+        
+        <% if current_user.id == @room.user_id %>
+          <form action="/rooms/<%= @room.id %>/activate" >
+            <input type="submit" value="Present" class="btn btn-primary"/>
+          </form>
+        <% end %>
+      <% end %><% end %>
+    </div>
 
-<% if user_signed_in? %>
-	<% if current_user.id == @room.user_id %>
-    <form action="/rooms/<%= @room.id %>/activate" >
-      <input type="submit" value="Present" class="btn btn-primary pull-right"/>
-    </form>
-		<%= render 'rooms/add_room', room: @room %>
-	<% end %>
-
-  <div id="questions" class="col-md-6">
-    <% if @questions %>
-      <% @questions.each do |question| %>
-        <%= render 'questions/question', question: question %>
-      <% end %>
-    <% end %>
+    <div id="questions" class="col-md-4"></div>
   </div>
-<% end %>
+</div>

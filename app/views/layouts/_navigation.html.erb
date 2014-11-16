@@ -1,12 +1,17 @@
 <%# navigation styled for Bootstrap 3.0 %>
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
-    <div class="navbar-header">
+    <div class="col-md-4">
       <% unless current_page?('/')%>
-        <%= link_to 'iPoll', root_path, class: 'navbar-brand' %>
+        <h3><%= link_to 'iPoll', root_path, class: 'navbar-brand' %></h3>
       <% end %>
     </div>
-    <div class="collapse navbar-collapse">
+    <div class="col-md-4">
+      <% if @room.id%>
+        <h3 class="navbar-brand">Room: <%= @room.name %></h3>
+      <% end %>
+    </div>
+    <div class="col-md-4">
       <ul class="nav navbar-nav">
         <%= render 'layouts/navigation_links' %>
       </ul>
