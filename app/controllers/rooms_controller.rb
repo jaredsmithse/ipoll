@@ -14,7 +14,9 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find_by_url(params[:id])
-    @questions = @room.questions.sort_by(&:order)
+    if @room.questions
+      @questions = @room.questions.sort_by(&:order)
+    end
     unless @room
       redirect_to root_path, :notice => "Room does not exist, please create one."
     end

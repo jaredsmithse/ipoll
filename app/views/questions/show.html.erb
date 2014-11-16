@@ -1,48 +1,52 @@
-<% if current_user.owner? %>
-  <div class="btn-group pull-right" role="group" id="ownerOptions" >
-    <button id="start" type="button" class="btn btn-default">
-      <i class="glyphicon glyphicon-play" ></i>
-    </button>
-    <button id="stop" type="button" class="btn btn-default">
-      <i class="glyphicon glyphicon-stop" ></i>
-    </button>
-    <button id="stats" type="button" class="btn btn-default">
-    <a href="/rooms/<%= @room.url %>/questions/<%= @question.id %>/stats" >
-      <i class="glyphicon glyphicon-stats" ></i>
-    </a></button>
-  </div>
-<% end %>
+<div class="container-fluid">
+  <div class="row text-center" style="padding: 50px;">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      
 
-<div data-question-id="<%= @question.id %>" class="row-fluid" id="questionShow" >
-  <h3>Room <%= @room.name %></h3>
-  <h1>Question <%= @question.order %>: <%= @question.description %></h1>
+      <div data-question-id="<%= @question.id %>" class="row-fluid" id="questionShow" >
+        <h3>Question <%= @question.order %>: <%= @question.description %></h1>
 
-  <div class="list-group">
-    <% @question.answers.each do |answer| %>
-      <% if @answered %>
-        <% if current_user.answers.include? answer %>
-          <a href="#" class="list-group-item active">
-        <% else %>
-          <a href="#" class="list-group-item">
-        <% end %>
-            <%= answer.order %>: <%= answer.description %>
-          </a>
-      <% else %>
-        <% if current_user.owner? %>
-          <a href="#" class="list-group-item">
-        <% else %>
-          <a href="/answers/<%= answer.id %>/choose" class="list-group-item">
-        <% end %>
-          <%= answer.order %>: <%= answer.description %>
-        </a>
+        <div class="list-group">
+          <% @question.answers.each do |answer| %>
+          <% if @answered %>
+            <% if current_user.answers.include? answer %>
+              <a href="#" class="list-group-item active">
+            <% else %>
+              <a href="#" class="list-group-item">
+            <% end %>
+            <%= answer.order %>: <%= answer.description %></a>
+          <% else %>
+            <% if current_user.owner? %>
+              <a href="#" class="list-group-item">
+            <% else %>
+              <a href="/answers/<%= answer.id %>/choose" class="list-group-item">
+            <% end %>
+          <%= answer.order %>: <%= answer.description %></a>
+          <% end %>
+          <% end %>
+        </div>
+      </div>
+      <% if current_user.owner? %>
+        <div class="btn-group pull-left" role="group" id="ownerOptions" >
+          <button id="start" type="button" class="btn btn-default">
+            <i class="glyphicon glyphicon-play" ></i>
+          </button>
+          <button id="stop" type="button" class="btn btn-default">
+            <i class="glyphicon glyphicon-stop" ></i>
+          </button>
+          <button id="stats" type="button" class="btn btn-default">
+          <a href="/rooms/<%= @room.url %>/questions/<%= @question.id %>/stats" >
+            <i class="glyphicon glyphicon-stats" ></i>
+          </a></button>
+        </div>
+        <div class="btn btn-primary pull-right">
+          Next  <i class="glyphicon glyphicon-arrow-right" ></i>
+        </div>
       <% end %>
-    <% end %>
-  </div>
 
+    </div>
+    <div class="col-md-4"></div>
+    </div>
+  </div>
 </div>
-
-<% if current_user.owner? %>
-  <div class="btn btn-primary pull-right">
-     Next  <i class="glyphicon glyphicon-arrow-right" ></i>
-  </div>
-<% end %>
