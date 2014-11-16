@@ -17,6 +17,12 @@ class AnswersController < ApplicationController
     end
   end
 
+  def choose
+    answer = Answer.find(params[:id])
+    current_user.choose answer
+    redirect_to "/questions/#{answer.question.id}"
+  end
+
   private
 
   def answer_params

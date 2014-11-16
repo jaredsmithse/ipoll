@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141116103852) do
+ActiveRecord::Schema.define(version: 20141116130752) do
 
   create_table "answers", force: true do |t|
     t.string  "description"
@@ -21,18 +21,24 @@ ActiveRecord::Schema.define(version: 20141116103852) do
   end
 
   create_table "polls", force: true do |t|
+    t.integer "question_id"
+    t.integer "user_id"
+    t.integer "answer_id"
   end
 
   create_table "questions", force: true do |t|
     t.string  "description"
     t.integer "order"
     t.integer "room_id"
+    t.boolean "current",     default: false
+    t.boolean "accepting",   default: false
   end
 
   create_table "rooms", force: true do |t|
     t.string  "name"
     t.string  "url"
     t.integer "user_id"
+    t.boolean "presenting", default: false
   end
 
   create_table "users", force: true do |t|

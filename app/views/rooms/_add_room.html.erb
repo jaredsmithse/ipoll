@@ -1,4 +1,9 @@
-<h4>Questions <button class="btn" id="newQuestion">+</button></h4>
+<div>
+  <h4>
+    Questions 
+    <button class="btn" id="newQuestion"><div class="glyphicon glyphicon-plus"/></button>
+  </h4>
+</div>
 
 <form class="form-group" id="questionForm" style="display: none;" action="/questions">
     <input name="question[room_id]" type="hidden" value="<%= @room.id %>" />

@@ -11,10 +11,13 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @room = Room.find_by_url(params[:room])
-    @question = @room.questions.find(params[:question])
-    unless @question
-      redirect_to root_path, :notice => "Question does not exist, you should not see this."
+    @question = Question.find(params[:id])
+    @room = @question.room
+    if current_user.pollee?
+      unless @question == @room.current_question
+        redirect_to "/rooms/#{@room.url}"
+      end
+      @answered = current_user.answered?(@room.current_question)
     end
   end
 

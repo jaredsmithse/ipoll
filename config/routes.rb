@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
   mount Upmin::Engine => '/admin'
   root to: 'visitors#index'
+  get 'rooms/:id/activate', :to => 'rooms#activate'
+  get 'answers/:id/choose', to: 'answers#choose'
+  get 'rooms/:room_url/questions/:question_id/stats', :to => 'questions#show'
   devise_for :users, controllers: { registrations: "my_devise/registrations" }
   resources :users
   resources :rooms
   resources :questions
   resources :answers
-  get 'stats/:room/:question', :to => 'questions#show'
 end

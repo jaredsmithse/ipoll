@@ -1,5 +1,4 @@
-
-<% if user_signed_in? %>
+<% if user_signed_in? && current_user.owner? %>
     <h3>Room Name:</h3>
     <%= simple_form_for @room do |f| %>
   	<%= f.input :name %>

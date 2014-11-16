@@ -1,52 +1,40 @@
-<script type="text/javascript">
-    // Load the Visualization API and the piechart package.
-    google.load('visualization', '1.0', {'packages':['corechart']});
+<h3>Room <%= @room.name %></h3>
+<h1>Question <%= @question.order %>: <%= @question.description %></h1>
 
-    // Set a callback to run when the Google Visualization API is loaded.
-    google.setOnLoadCallback(drawChart);
+<div class="list-group">
+  <% @question.answers.each do |answer| %>
+    <% if @answered %>
+      <% if current_user.answers.include? answer %>
+        <a href="#" class="list-group-item active">
+      <% else %>
+        <a href="#" class="list-group-item">
+      <% end %>
+          <%= answer.order %>: <%= answer.description %>
+        </a>
+    <% else %>
+      <a href="/answers/<%= answer.id %>/choose" class="list-group-item">
+        <%= answer.order %>: <%= answer.description %>
+      </a>
+    <% end %>
+  <% end %>
+</div>
 
-    // Callback that creates and populates a data table,
-    // instantiates the pie chart, passes in the data and
-    // draws it.
-    function drawChart() {
+<%# if user_signed_in? %>
+  <%# if current_user.id == @room.user_id %>
+    <!-- <div class="btn btn-primary pull-right">Present</div> -->
+    <%#= render 'rooms/add_room', room: @room %>
+  <%# end %>
 
-      // Create the data table.
-      var data = new google.visualization.DataTable();
-      data.addColumn('string', 'Answer');
-      data.addColumn('number', 'Votes');
-      data.addRows([
-        ['A', 5],
-        ['B', 2],
-        ['C', 4],
-        ['D', 7]
-      ]);
-
-      // Set chart options
-      var options = {
-      'width':600,
-      'height':500};
-
-      // Instantiate and draw our chart, passing in some options.
-      var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-      chart.draw(data, options);
-    }
-  </script>
-
-<% if user_signed_in? %>
-
-	<%# if current_user.id == @room.user_id %>
-		<!--something for admins-->
-	<%# end %>
-
-  <h3>Question <%= @question.order %></h3>
-
-  <div id="chart_div"></div>
-
-  <ul class="answerList">
-    <li>Answer A</li>
-    <li>Answer B</li>
-    <li>Answer C</li>
-    <li>Answer D</li>
-  </ul>
-
+  <!-- <div id="questions" class="col-md-6"> -->
+    <%# if @questions %>
+      <%# @questions.each do |question| %>
+        <%#= render 'questions/question', question: question %>
+      <%# end %>
+    <%# end %>
+  <!-- </div> -->
+<%# end %>
+<% if current_user.owner? %>
+  <h1>We are here, owner!</h1>
+<% else %>
+  <h1>We are here, pollee!</h1>
 <% end %>

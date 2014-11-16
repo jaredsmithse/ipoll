@@ -1,8 +1,11 @@
-<h3>Room</h3>
-<p>Name: <%= @room.name if @room.name %></p>
+<h3>Room <%= @room.name %></h3>
+
 
 <% if user_signed_in? %>
 	<% if current_user.id == @room.user_id %>
+    <form action="/rooms/<%= @room.id %>/activate" >
+      <input type="submit" value="Present" class="btn btn-primary pull-right"/>
+    </form>
 		<%= render 'rooms/add_room', room: @room %>
 	<% end %>
 

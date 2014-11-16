@@ -5,6 +5,14 @@ class Room < ActiveRecord::Base
 
   before_save :validate_url
 
+  def current_question
+    questions.detect(&:current)
+  end
+
+  def activate!
+    self.update_attribute(:presenting, true)
+  end
+
   def validate_url
   	self.url = URI.encode(name.gsub( /\s+/, '-' ))
   end
